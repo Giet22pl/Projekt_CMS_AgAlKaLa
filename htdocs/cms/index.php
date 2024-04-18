@@ -22,7 +22,7 @@ if (isset($_POST['email'])) {
             $_SESSION['email'] = $user['email'];
             $_SESSION['username'] = $user['username'];
 
-            
+            set_message('Zalogowałeś się pomyślnie' . $_SESSION['username']);
             header('Location: dashboard.php');
             die();
         }

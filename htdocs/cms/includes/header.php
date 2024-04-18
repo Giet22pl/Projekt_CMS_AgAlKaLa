@@ -37,7 +37,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Strona g³ówna</a>
+          <a class="nav-link active" aria-current="page" href="/">Strona gï¿½ï¿½wna</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="dashboard.php">Panel</a>
@@ -52,4 +52,4 @@
 </nav>
 
 
-    
+<?php get_message(); ?>
