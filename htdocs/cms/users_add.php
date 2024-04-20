@@ -8,12 +8,12 @@ secure();
 include('includes/header.php');
 
 if (isset($_POST['username'])) {
-    if ($stm = $connect->prepare('INSERT INTO users (username, email, password, active) VALUES (?, ?, ?, ?)')){
+    if ($stm = $connect->prepare('INSERT INTO uzytkownicy (nazwauzytkownika, email, haslo, aktywny) VALUES (?, ?, ?, ?)')){
         $hashed = SHA1($_POST['password']);
         $stm->bind_param('ssss', $_POST['username'], $_POST['email'], $hashed, $_POST['active']);
         $stm->execute();
 
-        set_message('Nowy użytkownik ' . $_SESSION['username'] . 'został dodany');
+        set_message('Nowy użytkownik ' . $_SESSION['username'] . ' został dodany');
         header('Location: users.php');
         $stm->close();
         die();
@@ -32,7 +32,7 @@ if (isset($_POST['username'])) {
        
         <form method="post">
         
-                <div class="form-outline mb-4">
+        <div class="form-outline mb-4">
                     <input type="text" id="username" name="username" class="form-control" />
                     <label class="form-label" for="username">Nazwa użytkownika</label>
                 </div>
@@ -52,7 +52,11 @@ if (isset($_POST['username'])) {
                     <select name="active" class="form-select" id="active">
                         <option value="1">Aktywny</option>
                         <option value="0">Nieaktywny</option>
+
+                        </select>
+
                     </select>
+
 
                 </div>
 
