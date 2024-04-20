@@ -49,7 +49,7 @@ if ($stm = $connect->prepare('SELECT * FROM users')){
 
         </tr>
 
-         <?php while($record = mysqli_fetch_assoc($result))(  ?>
+         <?php while($record = mysqli_fetch_assoc($result)){  ?>
         <tr>
         <td><?php echo $record['id']; ?> </td>
         <td><?php echo $record['username']; ?> </td>
