@@ -8,11 +8,11 @@ secure();
 include('includes/header.php');
 
 if (isset($_GET['delete'])){
-    if ($stm = $connect->prepare('DELETE FROM users where id = ?')){        
+    if ($stm = $connect->prepare('DELETE FROM uzytkownicy where id = ?')){        
         $stm->bind_param('i', $_GET['delete']);
         $stm->execute();
 
-        set_message('Użytkownik ' . $_GET['delete'] . 'został usunięty');
+        set_message('Użytkownik ' . $_GET['delete'] . ' został usunięty');
         header('Location: users.php');
         $stm->close();
         die();
@@ -23,7 +23,7 @@ if (isset($_GET['delete'])){
 
 }
 
-if ($stm = $connect->prepare('SELECT * FROM users')){
+if ($stm = $connect->prepare('SELECT * FROM uzytkownicy')){
     $stm->execute();
 
     $result = $stm->get_result();
@@ -52,10 +52,10 @@ if ($stm = $connect->prepare('SELECT * FROM users')){
          <?php while($record = mysqli_fetch_assoc($result)){  ?>
         <tr>
         <td><?php echo $record['id']; ?> </td>
-        <td><?php echo $record['username']; ?> </td>
+        <td><?php echo $record['nazwauzytkownika']; ?> </td>
         <td><?php echo $record['email']; ?> </td>
-        <td><?php echo $record['active']; ?> </td>
-        <td><a href="user_edit.php?id=<?php echo $record['id']; ?>">Edytuj</a>
+        <td><?php echo $record['aktywny']; ?> </td>
+        <td><a href="users_edit.php?id=<?php echo $record['id']; ?>">Edytuj</a>
             <a href="users.php?delete=<?php echo $record['id']; ?>">Usuń</a></td>
         </tr>
             
