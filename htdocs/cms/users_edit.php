@@ -8,7 +8,7 @@ secure();
 include('includes/header.php');
 
 if (isset($_POST['username'])) {
-    if ($stm = $connect->prepare('UPDATE users set username = ?, email = ?, active = ? VALUES (?, ?,  ?) WHERE id = ?')){
+    if ($stm = $connect->prepare('UPDATE uzytkownicy set nazwauzytkownika = ?, email = ?, aktywny = ? WHERE id = ?')){
         $stm->bind_param('sssi', $_POST['username'], $_POST['email'], $_POST['active'], $_GET['id']);
         $stm->execute();
 
@@ -17,7 +17,7 @@ if (isset($_POST['username'])) {
         $stm->close();
 
         if (isset($_POST['password'])) {
-            if ($stm = $connect->prepare('UPDATE users set password = ?, WHERE id = ?')){
+            if ($stm = $connect->prepare('UPDATE uzytkownicy set haslo = ?, WHERE id = ?')){
                 $hashed = SHA1($_POST['password']);
                 $stm->bind_param('si', $hashed, $_GET['id']);
                 $stm->execute();
@@ -28,7 +28,7 @@ if (isset($_POST['username'])) {
             echo 'Could not prepare password update statement!';
         }
     }
-        set_message('Użytkownik ' . $_GET['id'] . 'został zaktualizowany');
+        set_message('Użytkownik ' . $_GET['id'] . ' został zaktualizowany');
         header('Location: users.php');
         die();
 
@@ -48,7 +48,7 @@ if (isset($_POST['username'])) {
 
 if (isset($_GET['id'])){
 
-    if ($stm = $connect->prepare('SELECT * from users WHERE id = ?')){        
+    if ($stm = $connect->prepare('SELECT * from uzytkownicy WHERE id = ?')){        
         $stm->bind_param('i', $_GET['id']);
         $stm->execute();
 
@@ -66,7 +66,7 @@ if (isset($_GET['id'])){
                     <form method="post">
                     
                             <div class="form-outline mb-4">
-                                <input type="text" id="username" name="username" class="form-control active" value="<?php echo $user['username'] ?>" />
+                                <input type="text" id="username" name="username" class="form-control active" value="<?php echo $user['nazwauzytkownika'] ?>" />
                                 <label class="form-label" for="username">Nazwa użytkownika</label>
                             </div>
 
@@ -83,8 +83,8 @@ if (isset($_GET['id'])){
 
                             <div class="form-outline mb-4">
                                 <select name="active" class="form-select" id="active">
-                                    <option <?php echo($user['active']) ? "selected" : ""; ?> value="1">Aktywny</option>
-                                    <option <?php echo($user['active']) ? "" : "selected"; ?> value="0">Nieaktywny</option>
+                                    <option <?php echo($user['aktywny']) ? "selected" : ""; ?> value="1">Aktywny</option>
+                                    <option <?php echo($user['aktywny']) ? "" : "selected"; ?> value="0">Nieaktywny</option>
                                 </select>
 
                             </div>
