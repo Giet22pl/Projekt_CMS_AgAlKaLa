@@ -51,9 +51,7 @@ if (isset($_POST['username'])) {
                 <div class="form-outline mb-4">
                     <select name="active" class="form-select" id="active">
                         <option value="1">Aktywny</option>
-                        <option value="0">Nieaktywny</option>
-
-                        </select>
+                        <option value="0">Nieaktywny</option>                        
 
                     </select>
 
