@@ -13,7 +13,7 @@ include('includes/header.php');
     <div class="row justify-content-center">
         <div class="col-md-6">
         <h1 class="display-1">Pulpit</h1>   
-            <a href="user.php">Zarządzanie użytkownikami </a>
+            <a href="users.php">Zarządzanie użytkownikami </a>
             <a href="posts.php">Zarządzanie postami </a>
         </div>
 
