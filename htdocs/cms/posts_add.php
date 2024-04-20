@@ -9,7 +9,7 @@ include('includes/header.php');
 
 if (isset($_POST['title'])){
 
-    if ($stm = $connect->prepare('INSERT INTO posts (title, content, author, date) VALUES (?, ?, ?, ?)')){
+    if ($stm = $connect->prepare('INSERT INTO posty (tytul, tresc, autor, data) VALUES (?, ?, ?, ?)')){
         
         $stm->bind_param('ssis', $_POST['title'], $_POST['content'], $_SESSION['id'],  $_POST['date']);
         $stm->execute();
@@ -21,7 +21,7 @@ if (isset($_POST['title'])){
         die();
 
     } else {
-        echo 'Nie mo¿na przygotowaæ instrukcji!';
+        echo 'Nie mozna przygotowac instrukcji!';
     }
 
 
@@ -35,19 +35,19 @@ if (isset($_POST['title'])){
         <h1 class="display-1">Dodaj post</h1>
        
         <form method="post">
-                <!-- Username input -->
+                
                 <div class="form-outline mb-4">
                     <input type="text" id="title" name="title" class="form-control" />
-                    <label class="form-label" for="title">Tytu³</label>
+                    <label class="form-label" for="title">Tytul</label>
                 </div>
      
 
-                <!-- Content input -->
+                
                 <div class="form-outline mb-4">
                     <textarea name="content" id="content" ></textarea>
                 </div>
 
-                <!-- Date select -->
+                
                 <div class="form-outline mb-4">
                 <input type="date" id="date"  name="date" class="form-control" />
                 <label class="form-label" for="date">Data</label>
@@ -55,7 +55,7 @@ if (isset($_POST['title'])){
 
                 </div>
 
-                <!-- Submit button -->
+                
                 <button type="submit" class="btn btn-primary btn-block">Dodaj post</button>
             </form>
 
