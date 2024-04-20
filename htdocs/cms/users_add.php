@@ -28,7 +28,7 @@ if (isset($_POST['username'])) {
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-        <h1 class=display-1>Dodaj użytkownika</h1>   
+        <h1 class="display-1">Dodaj użytkownika</h1>   
        
         <form method="post">
         
@@ -52,6 +52,7 @@ if (isset($_POST['username'])) {
                     <select name="active" class="form-select" id="active">
                         <option value="1">Aktywny</option>
                         <option value="0">Nieaktywny</option>
+                    </select>
 
                 </div>
 
