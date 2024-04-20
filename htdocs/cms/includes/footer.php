@@ -23,6 +23,6 @@
 
       
     </script>
-
+<?php get_message(); ?>
 </body>
 </html>
