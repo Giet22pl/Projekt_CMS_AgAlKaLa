@@ -17,7 +17,7 @@ if (isset($_POST['username'])) {
         $stm->close();
 
         if (isset($_POST['password'])) {
-            if ($stm = $connect->prepare('UPDATE uzytkownicy set haslo = ?, WHERE id = ?')){
+            if ($stm = $connect->prepare('UPDATE uzytkownicy set haslo = ? WHERE id = ?')){
                 $hashed = SHA1($_POST['password']);
                 $stm->bind_param('si', $hashed, $_GET['id']);
                 $stm->execute();
