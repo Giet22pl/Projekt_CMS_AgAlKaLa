@@ -8,22 +8,22 @@ secure();
 include('includes/header.php');
 
 if (isset($_GET['delete'])){
-    if ($stm = $connect->prepare('DELETE FROM posts where id = ?')){
+    if ($stm = $connect->prepare('DELETE FROM posty where id = ?')){
         $stm->bind_param('i',  $_GET['delete']);
         $stm->execute();
 
-        set_message("Post o numerze ID " . $_GET['delete'] . " zosta³ usuniêty");
+        set_message("Post o numerze ID " . $_GET['delete'] . " zostal usuniety");
         header('Location: posts.php');
         $stm->close();
         die();
 
     } else {
-        echo 'Nie mo¿na przygotowaæ instrukcji!';
+        echo 'Nie mozna przygotowaa instrukcji!';
     }
 
 }
 
-if ($stm = $connect->prepare('SELECT * FROM posts')){
+if ($stm = $connect->prepare('SELECT * FROM posty')){
     $stm->execute();
 
     $result = $stm->get_result();
@@ -39,14 +39,14 @@ if ($stm = $connect->prepare('SELECT * FROM posts')){
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-        <h1 class="display-1">Zarz¹dzanie postami</h1>
+        <h1 class="display-1">Zarzadzanie postami</h1>
         <table class="table table-striped table-hover">
          <tr>
             <th>Id</th>
-            <th>Tytu³</th>
+            <th>Tytul</th>
             <th>ID Autora</th>
-            <th>Treœæ</th>
-            <th>Edytuj | Usuñ</th>
+            <th>Tresc</th>
+            <th>Edytuj | Usun</th>
 
          </tr>
 
@@ -54,11 +54,11 @@ if ($stm = $connect->prepare('SELECT * FROM posts')){
         <tr>
 
         <td><?php echo $record['id']; ?> </td>
-        <td><?php echo $record['title']; ?> </td>
-        <td><?php echo $record['author']; ?> </td>
-        <td><?php echo $record['content']; ?> </td>
+        <td><?php echo $record['tytul']; ?> </td>
+        <td><?php echo $record['autor']; ?> </td>
+        <td><?php echo $record['tresc']; ?> </td>
         <td><a href="posts_edit.php?id=<?php echo $record['id']; ?>">Edytuj</a> | 
-            <a href="posts.php?delete=<?php echo $record['id']; ?>">Usuñ</a></td>
+            <a href="posts.php?delete=<?php echo $record['id']; ?>">Usun</a></td>
         </tr>
         
         
@@ -78,14 +78,14 @@ if ($stm = $connect->prepare('SELECT * FROM posts')){
 <?php
    } else 
    {
-    echo 'Nie znaleziono ¿adnych postów';
+    echo 'Nie znaleziono zadnych postow';
    }
 
     
    $stm->close();
 
 } else {
-   echo 'Nie mo¿na przygotowaæ instrukcji!';
+   echo 'Nie mozna przygotowac instrukcji!';
 }
 include('includes/footer.php');
 ?>
