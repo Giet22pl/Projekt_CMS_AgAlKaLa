@@ -15,7 +15,7 @@ include('includes/header.php');
 
 
 if (isset($_POST['email'])) {
-    if ($stm = $connect->prepare('SELECT * FROM users WHERE email = ? AND password = ? AND active = 1')){
+    if ($stm = $connect->prepare('SELECT * FROM uzytkownicy WHERE email = ? AND haslo = ? AND aktywny = 1')){
         $hashed = SHA1($_POST['password']);
         $stm->bind_param('ss', $_POST['email'], $hashed);
         $stm->execute();
@@ -26,9 +26,9 @@ if (isset($_POST['email'])) {
         if ($user){
             $_SESSION['id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
-            $_SESSION['username'] = $user['username'];
+            $_SESSION['username'] = $user['nazwauzytkownika'];
 
-            set_message('Zalogowałeś się pomyślnie' . $_SESSION['username']);
+            set_message('Zalogowałeś się pomyślnie ' . $_SESSION['username']);
             header('Location: dashboard.php');
             die();
         }
